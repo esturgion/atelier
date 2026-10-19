@@ -1,0 +1,2 @@
+. la suppression définitive : comment ça fonctionne pour ce que contient les dossiers ? (suppression en cascade ? et dans le cas du multiplacement ? -> juste suppression des items dans ces cas)
+à long terme, seule la suppression des projets supprime tout ce qu'ils contiennent. Par contre, pour les dossiers, si il n'y a qu'un item pour les contenus, ça supprime, sinon ça supprime juste la ligne de l'item.
