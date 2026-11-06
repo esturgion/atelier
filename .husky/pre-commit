@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
 
-cd backend
-composer cs:check
+# Backend Symfony
+cd "$(git rev-parse --show-toplevel)/backend" || exit 1
+composer cs:check || exit 1
+
+# Frontend React
+cd ../frontend || exit 1
+npx lint-staged || exit 1
