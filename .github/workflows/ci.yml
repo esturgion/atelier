@@ -1,0 +1,64 @@
+
+name: Project CI
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  php-cs-fixer:
+    name: PHP CS-Fixer
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Check code style
+        run: composer cs:check
+
+  frontend:
+    name: Frontend Quality Checks
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check ESLint
+        run: npm run lint
+
+      - name: Check Prettier
+        run: npm run format:check
+
+      - name: Check TypeScript and build
+        run: npm run build
