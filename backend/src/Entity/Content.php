@@ -28,7 +28,7 @@ abstract class Content
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(name: 'content_updated_at', nullable: true)]
-    private ?\DateTimeImmutable $udpatedAt = null;
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToOne(inversedBy: 'content', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -68,14 +68,14 @@ abstract class Content
         return $this;
     }
 
-    public function getUdpatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
-        return $this->udpatedAt;
+        return $this->updatedAt;
     }
 
-    public function setUdpatedAt(?\DateTimeImmutable $udpatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
-        $this->udpatedAt = $udpatedAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
